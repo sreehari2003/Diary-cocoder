@@ -1,0 +1,90 @@
+@mixin lg {
+  @media (max-width: 886px) {
+    @content;
+  }
+}
+
+@mixin mob {
+  @media (max-width: 570px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: 995px) {
+    @content;
+  }
+}
+
+.bd {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.671);
+  min-height: 100vh;
+  flex-direction: column;
+  @include mob {
+    flex-direction: column;
+  }
+}
+
+$images: "https://images.unsplash.com/photo-1516414447565-b14be0adf13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=773&q=80";
+.banner {
+  background-image: linear-gradient(
+      to top,
+      rgba(24, 15, 15, 0.5),
+      rgba(15, 13, 13, 0.376)
+    ),
+    url($images);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  & h1 {
+    color: white;
+    font-size: 50px;
+    font-family: sans-serif;
+    font-weight: 700;
+    @include mob {
+      text-align: center;
+      font-size: 55px;
+    }
+  }
+  & h4 {
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+}
+.camp {
+  position: relative;
+  display: flex;
+  padding: 20px 40px;
+
+  @include mob {
+    flex-direction: column;
+  }
+}
+.add {
+  margin-left: 92%;
+  margin-top: 550px;
+  font-size: 40px;
+  position: fixed;
+  & svg {
+    font-size: 40px;
+    color: white !important;
+  }
+  & button {
+    padding: 13px !important;
+    border-radius: 500px !important;
+  }
+}
+.bt {
+  padding: 13px !important;
+  border-radius: 500px !important;
+}

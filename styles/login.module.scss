@@ -1,0 +1,24 @@
+.login {
+  height: 100vh;
+  flex-direction: column;
+}
+.login h2 {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+.dis {
+  width: 400px;
+  height: 50vh;
+}
+.fr {
+  display: flex;
+  flex-direction: column;
+}
+.login label {
+  padding: 10px;
+}
+.login button {
+  margin-top: 20px !important;
+}

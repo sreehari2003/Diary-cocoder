@@ -1,0 +1,16 @@
+.bdy {
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.txt {
+  padding: 10px;
+}
+.txts {
+  padding: 10px;
+  & button {
+    padding: 10px 80px;
+  }
+}
