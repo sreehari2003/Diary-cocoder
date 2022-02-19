@@ -1,0 +1,24 @@
+.bd {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+.hd {
+  height: 70vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 100px;
+  & textarea {
+    width: 500px !important;
+  }
+}
+.bd nav {
+  display: flex;
+  justify-content: space-around;
+}
+.bd button {
+  align-self: center !important;
+  //   margin-right: 190px !important;
+  margin-top: 20px !important;
+}
