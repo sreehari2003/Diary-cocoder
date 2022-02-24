@@ -54,13 +54,21 @@ const SignUp = () => {
         };
 
         const sendData = async () => {
-          const link = "http://localhost:4000/api/auth";
+          const link = "http://localhost:4000/api/auth/signup";
+          e;
           try {
-            const res: any = await axios.post(link, Info);
-            if (!res.data.ok) throw new Error();
-            router.push("/new");
-          } catch (err: any) {
-            alert(err);
+            const res: any = await fetch(link, {
+              method: "POST",
+              body: JSON.stringify(Info),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            const data = await res.json();
+            if (!data?.ok) throw new Error(data?.message);
+            // console.log(data);
+          } catch (e) {
+            alert(e);
           }
         };
         sendData();
@@ -74,7 +82,7 @@ const SignUp = () => {
         <form onSubmit={onSubmit}>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic1"
               label="userName"
               variant="outlined"
               required={true}
@@ -83,7 +91,7 @@ const SignUp = () => {
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic2"
               label="Email"
               variant="outlined"
               type="email"
@@ -93,22 +101,24 @@ const SignUp = () => {
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic3"
               label="password"
               variant="outlined"
               required={true}
               inputRef={password}
               type="password"
+              autoComplete="on"
             />
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic4"
               label="confirm password"
               variant="outlined"
               required={true}
               inputRef={confirmPassword}
               type="password"
+              autoComplete="on"
             />
           </div>
           <div className={styles.txts}>

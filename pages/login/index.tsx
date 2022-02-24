@@ -15,17 +15,26 @@ const Login = () => {
       if (mail.current.value.length < 1 || pass.current.value.length < 1) {
         alert("Please enter all input");
       } else {
-        const data = {
-          username: mail.current.value,
+        const dt = {
+          email: mail.current.value,
           password: pass.current.value,
         };
-        const link = "http://localhost:4000/api/login";
+        const link = "http://localhost:4000/api/auth/login";
         const sendData = async () => {
           try {
-            const res: any = await axios.post(link, data);
-            if (!res.data.ok) throw new Error();
+            const res: any = await fetch(link, {
+              method: "POST",
+              body: JSON.stringify(dt),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+
+            const data = await res.json();
+            console.log(data);
+            if (!data?.ok) throw new Error(data.message);
           } catch (e) {
-            console.log(e);
+            alert(e);
           }
         };
         sendData();
@@ -42,7 +51,7 @@ const Login = () => {
             <div className={classes.fr}>
               <label htmlFor="outlined-search">E-Mail</label>
               <TextField
-                id="outlined-search"
+                id="outlined-search1"
                 label=""
                 type="text"
                 variant="outlined"
@@ -52,7 +61,7 @@ const Login = () => {
               />
               <label htmlFor="outlined-search">password</label>
               <TextField
-                id="outlined-search"
+                id="outlined-search2"
                 label=""
                 type="password"
                 variant="outlined"
