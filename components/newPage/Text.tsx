@@ -4,15 +4,24 @@ import styles from "./txt.module.scss";
 
 interface txt {
   getText: (el: string) => void;
+  heading: (el: string) => void;
 }
-const Text = ({ getText }: txt) => {
-  const [text, setText] = useState("");
-  getText(text);
+const Text = ({ getText, heading }: txt) => {
+  const [text, setText] = useState<string>("");
+  const [head, setHead] = useState<string>("");
 
+  getText(text);
+  heading(head);
   return (
     <>
       <div className={styles.box}>
-        <TextField id="outlined-basic" label="Heading" variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="Heading"
+          variant="outlined"
+          value={head}
+          onChange={(e) => setHead(e.target.value)}
+        />
         <div className={styles.box_min}>
           <TextField
             id="outlined-multiline-static"
