@@ -2,20 +2,8 @@ import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "../../styles/sign.module.scss";
-import axios from "axios";
 import { useRouter } from "next/router";
-
-// Interface res {
-//    ok: boolean,
-
-// }
-interface eror {
-  ok: boolean;
-  res: {
-    name: string;
-    message: string;
-  };
-}
+import cookie from "js-cookie";
 
 const SignUp = () => {
   const router = useRouter();
@@ -57,6 +45,7 @@ const SignUp = () => {
           const link = "http://localhost:4000/api/auth/signup";
           e;
           try {
+            //need to use typescript here
             const res: any = await fetch(link, {
               method: "POST",
               body: JSON.stringify(Info),
@@ -66,7 +55,8 @@ const SignUp = () => {
             });
             const data = await res.json();
             if (!data?.ok) throw new Error(data?.message);
-            // console.log(data);
+            cookie.set("jwt", data.token);
+            router.push("/diary");
           } catch (e) {
             alert(e);
           }

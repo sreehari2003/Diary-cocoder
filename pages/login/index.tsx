@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import classes from "../../styles/login.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import axios from "axios";
-import { red } from "@mui/material/colors";
+import { useRouter } from "next/router";
+import cookie from "js-cookie";
 
 const Login = () => {
+  const router = useRouter();
   const mail = useRef<HTMLInputElement>();
   const pass = useRef<HTMLInputElement>();
 
@@ -31,8 +32,9 @@ const Login = () => {
             });
 
             const data = await res.json();
-            console.log(data);
             if (!data?.ok) throw new Error(data.message);
+            cookie.set("jwt", data.token);
+            router.push("/diary");
           } catch (e) {
             alert(e);
           }
