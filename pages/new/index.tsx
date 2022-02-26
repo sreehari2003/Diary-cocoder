@@ -3,7 +3,6 @@ import Text from "../../components/newPage/Text";
 import styles from "../../styles/new.module.scss";
 import Preview from "../../components/newPage/Preview";
 import Button from "@mui/material/Button";
-import moment from "moment";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
 const Index = () => {
@@ -27,28 +26,28 @@ const Index = () => {
   };
   const onClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (hd.length < 1 || text.length < 1) {
-      alert("Please add heading and your diary");
-    }
     const sendData = async () => {
       try {
         const data = {
           text: text,
           heading: hd,
-          date: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
         };
+        console.log(data.heading);
         //need to change api link
-        const apiLink = `http://localhost:4000/api/diary/fdfd`;
+        const apiLink = `http://localhost:4000/api/diary/${cookie.get("id")}`;
         const res = await fetch(apiLink, {
           method: "POST",
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${cookie.get("jwt")}`,
           },
         });
         const response = await res.json();
         if (!res.ok) throw new Error(response.message);
-      } catch (e) {}
+      } catch (e) {
+        alert(e);
+      }
     };
     sendData();
   };

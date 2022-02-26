@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import classes from "../../styles/login.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
+import cookieContext from "../../context/cookieContext";
 
 const Login = () => {
+  const ctx = useContext(cookieContext);
   const router = useRouter();
+  useEffect(() => {
+    if (ctx.login) {
+      router.push("/diary");
+    }
+  });
   const mail = useRef<HTMLInputElement>();
   const pass = useRef<HTMLInputElement>();
 
@@ -33,7 +40,9 @@ const Login = () => {
 
             const data = await res.json();
             if (!data?.ok) throw new Error(data.message);
+            ctx.log();
             cookie.set("jwt", data.token);
+            cookie.set("id", data.id);
             router.push("/diary");
           } catch (e) {
             alert(e);
@@ -60,6 +69,8 @@ const Login = () => {
                 className={classes.text}
                 required
                 inputRef={mail}
+                hidden
+                autoComplete="email"
               />
               <label htmlFor="outlined-search">password</label>
               <TextField
@@ -70,6 +81,7 @@ const Login = () => {
                 className={classes.text}
                 required={true}
                 inputRef={pass}
+                autoComplete="current-password"
               />
               <Button type="submit" variant="contained">
                 Login

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import TextField from "@mui/material/TextField";
 import styles from "./txt.module.scss";
 
 interface txt {
