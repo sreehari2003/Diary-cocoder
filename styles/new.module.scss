@@ -1,7 +1,28 @@
+@mixin lg {
+  @media (max-width: 886px) {
+    @content;
+  }
+}
+
+@mixin mob {
+  @media (max-width: 570px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: 995px) {
+    @content;
+  }
+}
+
 .bd {
   height: 10vh;
   display: flex;
   flex-direction: column;
+  // @include mob {
+  //   flex-direction: row;
+  // }
 }
 .hd {
   height: 70vh;
@@ -11,6 +32,9 @@
   padding: 100px;
   & textarea {
     width: 500px !important;
+  }
+  @include mob {
+    flex-direction: row;
   }
 }
 .bd nav {

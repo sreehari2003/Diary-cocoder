@@ -1,3 +1,21 @@
+@mixin lg {
+  @media (max-width: 886px) {
+    @content;
+  }
+}
+
+@mixin mob {
+  @media (max-width: 570px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: 995px) {
+    @content;
+  }
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -5,5 +23,8 @@
   margin-top: 50px;
   &_min {
     margin-top: 20px;
+  }
+  @include mob {
+    flex-direction: row;
   }
 }
