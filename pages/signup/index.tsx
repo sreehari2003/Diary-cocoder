@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "../../styles/sign.module.scss";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
+import cookieContext from "../../context/cookieContext";
 
 const SignUp = () => {
+  const ctx = useContext(cookieContext);
   const router = useRouter();
+  useEffect(() => {
+    if (ctx.login) {
+      router.push("/diary");
+    }
+  });
 
   const name = useRef<HTMLInputElement>();
   const email = useRef<HTMLInputElement>();
@@ -55,7 +62,9 @@ const SignUp = () => {
             });
             const data = await res.json();
             if (!data?.ok) throw new Error(data?.message);
+            ctx.log();
             cookie.set("jwt", data.token);
+            cookie.set("id", data.id);
             router.push("/diary");
           } catch (e) {
             alert(e);
