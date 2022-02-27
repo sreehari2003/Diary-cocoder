@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
+import Error from "next/error";
 
 interface dt {
   _id: string;
@@ -17,7 +18,6 @@ interface dt {
 const Index = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [loading, setLoading] = useState<boolean>(true);
   const [data, setDatac] = useState<dt>();
   const date = moment(data?.date).format("DD-MMM-YYYY");
 
@@ -30,15 +30,12 @@ const Index = () => {
             authorization: `Bearer ${cookie.get("jwt")}`,
           },
         });
-        setLoading(false);
-        if (!res.data.ok) throw new Error("Could not finish request");
         const dry = res.data.data.diary;
         const el = dry.find((el: dt) => {
           return el._id == id;
         });
         if (!el) {
-          router.push("/diary");
-          throw new Error("Could not find the requested id");
+          router.push("/404");
         } else {
           setDatac(el);
         }
@@ -49,11 +46,6 @@ const Index = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (loading) {
-    return <CircularProgress disableShrink />;
-  }
-
   if (data) {
     return (
       <div className={`${styles.box} flex`}>
@@ -70,6 +62,6 @@ const Index = () => {
     );
   }
 
-  return <h1>No diary found</h1>;
+  return <Error statusCode={404} />;
 };
 export default Index;
