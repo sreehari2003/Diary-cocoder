@@ -3,7 +3,7 @@ import classes from "./navbar.module.scss";
 import Link from "next/link";
 import { HiMenuAlt2 } from "react-icons/hi";
 import cookieContext from "../../context/cookieContext";
-
+import { FaGithub } from "react-icons/fa";
 //components
 const Navbar: React.FC = () => {
   const ctx = useContext(cookieContext);
@@ -47,6 +47,13 @@ const Navbar: React.FC = () => {
               <h3 className={classes.mainChild}>Sign Up</h3>
             </Link>
           )}
+          <a
+            href="https://github.com/sreehari2003/Diary-cocoder"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaGithub style={{ fontSize: 30 }} />
+          </a>
           <HiMenuAlt2 className={classes.bur} />
         </div>
       </div>
