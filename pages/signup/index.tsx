@@ -49,8 +49,8 @@ const SignUp = () => {
         };
 
         const sendData = async () => {
-          const link = "http://localhost:4000/api/auth/signup";
-          e;
+          const link =
+            "https://diary-app-cocoder.herokuapp.com/api/auth/signup";
           try {
             //need to use typescript here
             const res: any = await fetch(link, {
