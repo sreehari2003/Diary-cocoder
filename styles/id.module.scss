@@ -1,0 +1,29 @@
+.box {
+  height: 50vh;
+  width: 100%;
+  background: white;
+  flex-direction: column;
+  //   border: 1px solid black;
+}
+.h1Box {
+  padding: 3px 400px;
+  border: 1px solid black;
+}
+.textBox {
+  margin-top: 10px;
+  padding: 10px;
+  width: 918px;
+  border: 1px solid black;
+
+  //   background: red;
+  //   overflow-y: scroll;
+}
+.date {
+  padding: 10px;
+  width: 918px;
+  display: flex;
+  justify-content: flex-end;
+  //   border: 1px solid black;
+
+  //   background: red;
+}

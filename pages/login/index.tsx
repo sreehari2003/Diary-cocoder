@@ -27,7 +27,7 @@ const Login = () => {
           email: mail.current.value,
           password: pass.current.value,
         };
-        const link = "https://diary-app-cocoder.herokuapp.com/api/auth/login";
+        const link = "http://localhost:4000/api/auth/login";
         const sendData = async () => {
           try {
             const res: any = await fetch(link, {
