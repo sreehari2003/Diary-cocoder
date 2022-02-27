@@ -34,7 +34,9 @@ const Index = () => {
         };
         console.log(data.heading);
         //need to change api link
-        const apiLink = `http://localhost:4000/api/diary/${cookie.get("id")}`;
+        const apiLink = `https://diary-app-cocoder.herokuapp.com/api/diary/${cookie.get(
+          "id"
+        )}`;
         const res = await fetch(apiLink, {
           method: "POST",
           body: JSON.stringify(data),
