@@ -21,7 +21,9 @@ const Index = () => {
   const [data, setDatac] = useState<dt>();
   const date = moment(data?.date).format("DD-MMM-YYYY");
 
-  const link = `http://localhost:4000/api/diary/${cookie.get("id")}`;
+  const link = `https://diary-app-cocoder.herokuapp.com/api/diary/${cookie.get(
+    "id"
+  )}`;
   useEffect(() => {
     const getData = async () => {
       try {

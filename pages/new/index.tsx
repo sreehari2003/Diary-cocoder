@@ -31,6 +31,7 @@ const Index = () => {
         const data = {
           text: text,
           heading: hd,
+          date: new Date(),
         };
         console.log(data.heading);
         //need to change api link
@@ -47,6 +48,7 @@ const Index = () => {
         });
         const response = await res.json();
         if (!res.ok) throw new Error(response.message);
+        router.push("/diary");
       } catch (e) {
         alert(e);
       }
