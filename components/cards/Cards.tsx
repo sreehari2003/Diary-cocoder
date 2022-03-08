@@ -25,9 +25,11 @@ const Cards = () => {
   }, []);
 
   const [loading, setLoading] = useState<boolean>(true);
+  const [empty, setEmpty] = useState<boolean>(false);
   const [data, setDatac] = useState<dt[]>();
-  console.log(data);
-  const link = `http://localhost:4000/api/diary/${cookie.get("id")}`;
+  const link = `https://diary-app-cocoder.herokuapp.com/api/diary/${cookie.get(
+    "id"
+  )}`;
 
   useEffect(() => {
     const getData = async () => {
@@ -39,7 +41,12 @@ const Cards = () => {
         });
         setLoading(false);
         if (!res.data.ok) throw new Error("Could not finish request");
-        setDatac(res.data.data.diary);
+        if (res.data.data.diary.length < 1) {
+          setLoading(false);
+          setEmpty(true);
+        } else {
+          setDatac(res.data.data.diary);
+        }
       } catch (e) {
         // alert(e);
       }
@@ -76,7 +83,15 @@ const Cards = () => {
       </>
     );
   }
-
+  if (loading || empty) {
+    return (
+      <>
+        <div className={`flex`} style={{ textAlign: "center" }}>
+          <h2>You dont have any diary to show</h2>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       {data?.map((el, index) => {

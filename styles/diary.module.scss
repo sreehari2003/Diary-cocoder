@@ -75,6 +75,11 @@ $images: "https://images.unsplash.com/photo-1516414447565-b14be0adf13e?ixlib=rb-
   margin-top: 550px;
   font-size: 40px;
   position: fixed;
+
+  @include mob {
+    margin-top: 700px;
+    margin-left: 82%;
+  }
   & svg {
     font-size: 40px;
     color: white !important;
