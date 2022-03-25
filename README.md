@@ -1,5 +1,11 @@
 ![bg](https://raw.githubusercontent.com/Ann-T-George/tinkerhub_co_coder/main/pics/bg.png)
 
+##  NOTE
+I am trying to redesign the whole ui of app i have a figma [Design](https://www.figma.com/file/LonS17mYEGQilnNEL2btyv/DiaryApp?node-id=0%3A1) if you want to contribrute please go through the figma design
+
+
+
+
 # **Diary Cocoder**
 
 The Frontend of project was built using Next js typescript and scss
