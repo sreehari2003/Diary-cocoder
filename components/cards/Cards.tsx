@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
+import { AiFillDelete } from "react-icons/ai";
 interface dt {
   _id: string;
   date: string;
@@ -30,6 +31,21 @@ const Cards = () => {
   const link = `https://diary-app-cocoder.herokuapp.com/api/diary/${cookie.get(
     "id"
   )}`;
+  const deleteDiary = async (id: string) => {
+    try {
+      const res = await axios.delete(link, {
+        headers: {
+          authorization: `Bearer ${cookie.get("jwt")}`,
+        },
+        data: {
+          source: id,
+        },
+      });
+      console.log(res);
+    } catch (e) {
+      console.log("deleted");
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -53,14 +69,13 @@ const Cards = () => {
     };
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [deleteDiary]);
 
   const route = (el: string) => {
     router.push(`/diary/${el}`);
   };
 
-  const img =
-    "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+  const img = "https://source.unsplash.com/random";
 
   if (loading) {
     return (
@@ -100,7 +115,7 @@ const Cards = () => {
         return (
           <div className={styles.box} key={10}>
             <Image
-              src="https://source.unsplash.com/random/?diary"
+              src={`https://source.unsplash.com/random/${index * 10}`}
               width={300}
               height={450}
               key={10}
@@ -112,8 +127,19 @@ const Cards = () => {
               <h2>{date}</h2>
             </div>
             <div className={styles.info}>
-              <Button variant="contained" onClick={() => route(el._id)}>
+              <Button
+                variant="contained"
+                onClick={() => route(el._id)}
+                className={styles.btn}
+              >
                 Read Diary
+              </Button>
+              <Button
+                variant="contained"
+                className={styles.i}
+                onClick={() => deleteDiary(el._id)}
+              >
+                <AiFillDelete style={{ fontSize: "20px" }} />
               </Button>
             </div>
           </div>
