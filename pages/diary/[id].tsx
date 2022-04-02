@@ -16,6 +16,7 @@ interface dt {
   heading: string;
 }
 const Index = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
   const { id } = router.query;
   const [data, setDatac] = useState<dt>();
@@ -33,6 +34,7 @@ const Index = () => {
           },
         });
         const dry = res.data.data.diary;
+        setLoading(false);
         const el = dry.find((el: dt) => {
           return el._id == id;
         });
@@ -48,6 +50,13 @@ const Index = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  if (loading) {
+    return (
+      <div className={`${styles.box} flex`}>
+        <CircularProgress />
+      </div>
+    );
+  }
   if (data) {
     return (
       <div className={`${styles.box} flex`}>

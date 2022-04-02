@@ -65,6 +65,7 @@ $images: "https://images.unsplash.com/photo-1516414447565-b14be0adf13e?ixlib=rb-
   position: relative;
   display: flex;
   padding: 20px 40px;
+  flex-wrap: wrap;
 
   @include mob {
     flex-direction: column;
