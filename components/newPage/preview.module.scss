@@ -1,0 +1,37 @@
+@mixin lg {
+    @media (max-width: 886px) {
+      @content;
+    }
+  }
+  
+  @mixin mob {
+    @media (max-width: 570px) {
+      @content;
+    }
+  }
+  
+  @mixin xl {
+    @media (max-width: 995px) {
+      @content;
+    }
+  }
+.col{
+    color: black !important;
+    border: 1px solid grey;
+    height: 55px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview{
+     width: 500px;
+     border: 1px solid grey;
+     height: 495px;
+     margin-top: 20px;
+
+     @include mob{
+     width:400px;
+     }
+}
