@@ -61,15 +61,19 @@ const Index = () => {
         <div className={styles.bd}>
           <nav>
             <h2>Diary</h2>
-            <h2>Preview</h2>
+            <h2 className={styles.prev}>Preview</h2>
           </nav>
           <div className={styles.hd}>
             <>
               <Text getText={getText} heading={getHead} />
+              <h2 className={styles.pre}>Preview</h2>
               <Preview text={text} heading={hd} />
             </>
+            <Button type="submit" variant="contained" className={styles.btnsm}>
+              Save
+            </Button>
           </div>
-          <Button type="submit" variant="contained">
+          <Button type="submit" variant="contained" className={styles.btn}>
             Save
           </Button>
         </div>

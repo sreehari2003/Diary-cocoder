@@ -92,9 +92,6 @@ const Cards = () => {
         <div className={`${styles.box} flex`} style={{ width: 300 }}>
           <CircularProgress disableShrink />
         </div>
-        <div className={`${styles.box} flex`} style={{ width: 300 }}>
-          <CircularProgress disableShrink />
-        </div>
       </>
     );
   }

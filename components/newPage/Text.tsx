@@ -30,6 +30,7 @@ const Text = ({ getText, heading }: txt) => {
             label="Enter your Diary"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            className={styles.txt}
           />
         </div>
       </div>

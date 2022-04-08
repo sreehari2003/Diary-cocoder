@@ -24,25 +24,62 @@
   //   flex-direction: row;
   // }
 }
+.prev {
+  @include mob{
+    display: none;
+  }
+}
+
 .hd {
   height: 70vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 100px;
+  // flex-direction: column;
+
   & textarea {
     width: 500px !important;
   }
+
   @include mob {
-    flex-direction: row;
+    height: 180vh;
+    flex-direction: column;
   }
 }
+
 .bd nav {
   display: flex;
   justify-content: space-around;
 }
+
 .bd button {
   align-self: center !important;
   //   margin-right: 190px !important;
   margin-top: 20px !important;
+}
+
+.bd nav h2 {
+  @include mob {
+  }
+}
+.btnsm{
+  display: none;
+  @include mob {
+    padding: 10px 20px !important;
+    margin: 20px !important;
+   display:block;
+  }
+}
+.btn{
+  @include mob {
+    display: none;
+  }
+}
+.pre{
+  display: none;
+  @include mob{
+   display: block;
+    margin-bottom:-30px;
+  }
 }
